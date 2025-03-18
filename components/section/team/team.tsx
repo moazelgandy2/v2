@@ -1,9 +1,10 @@
 "use client";
 
-import { team } from "@/constants";
+import { sections, team } from "@/constants";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
+import { SectionHeader } from "../section-header";
 
 export function TeamSection() {
   const ref = useRef(null);
@@ -16,18 +17,7 @@ export function TeamSection() {
     >
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="inline-block px-3 py-1 text-sm rounded-lg bg-primary text-primary-foreground">
-              Our Team
-            </div>
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-              Meet the Experts
-            </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Our talented team of professionals is dedicated to delivering
-              exceptional results.
-            </p>
-          </div>
+          <SectionHeader section={sections.team} />
         </div>
         <div
           ref={ref}

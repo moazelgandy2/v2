@@ -6,11 +6,14 @@ export function Footer() {
     <footer className="w-full py-6 border-t md:py-0">
       <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
         <div className="flex items-center gap-2 font-bold">
-          <Code className="w-6 h-6" />
-          <span>Company</span>
+          <img
+            className="w-6 h-6"
+            src="/logo2.png"
+          />
+          <span>Marketopia</span>
         </div>
         <p className="text-sm leading-loose text-center text-muted-foreground md:text-left">
-          © {new Date().getFullYear()} Company. All rights reserved.
+          © {new Date().getFullYear()} Marketopia. All rights reserved.
         </p>
         <div className="flex items-center gap-4">
           <Link

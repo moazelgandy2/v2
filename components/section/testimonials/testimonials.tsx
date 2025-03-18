@@ -1,8 +1,9 @@
 "use client";
 
-import { testimonials } from "@/constants";
+import { sections, testimonials } from "@/constants";
 import { useInView, motion } from "framer-motion";
 import { useRef } from "react";
+import { SectionHeader } from "../section-header";
 
 export function TestimonialsSection() {
   const ref = useRef(null);
@@ -15,18 +16,7 @@ export function TestimonialsSection() {
     >
       <div className="container relative w-full px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="inline-block px-3 py-1 text-sm rounded-lg bg-primary text-primary-foreground">
-              Testimonials
-            </div>
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-              What Our Clients Say
-            </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Don't just take our word for it. Here's what our clients have to
-              say about working with us.
-            </p>
-          </div>
+          <SectionHeader section={sections.testimonials} />
         </div>
         <div
           ref={ref}

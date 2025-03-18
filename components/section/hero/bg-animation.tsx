@@ -16,7 +16,7 @@ export function HeroBackgroundAnimation() {
         }}
       />
       <motion.div
-        className="absolute -bottom-[10%] -left-[10%] h-[400px] w-[400px] rounded-full bg-blue-500/20 blur-3xl"
+        className="absolute -bottom-[10%] -left-[10%] h-[400px] w-[400px] rounded-full blur-3xl"
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.2, 0.3, 0.2],

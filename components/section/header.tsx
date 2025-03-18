@@ -16,8 +16,11 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 text-xl font-bold"
         >
-          <Code className="w-6 h-6" />
-          <span>Company</span>
+          <img
+            className="w-6 h-6"
+            src="/logo2.png"
+          />
+          <span>Marketopia</span>
         </Link>
         <nav className="hidden gap-6 md:flex">
           <Link

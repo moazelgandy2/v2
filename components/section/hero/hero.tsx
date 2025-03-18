@@ -3,6 +3,9 @@ import { Button } from "../../ui/button";
 import Image from "next/image";
 import { HeroBackgroundAnimation } from "./bg-animation";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { ShinyButton } from "@/components/magicui/shiny-button";
+import { LineShadowText } from "@/components/magicui/line-shadow-text";
+import { HyperText } from "@/components/magicui/hyper-text";
 
 export function HeroSection() {
   return (
@@ -24,12 +27,18 @@ export function HeroSection() {
               >
                 Transforming Ideas into
                 <motion.span
-                  className="text-transparent bg-gradient-to-r from-primary to-blue-600 bg-clip-text"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                  Digital Reality
+                  <h1 className="my-4 text-5xl font-semibold leading-none tracking-tighter text-balance sm:text-6xl md:text-7xl lg:text-8xl">
+                    <LineShadowText
+                      className="italic"
+                      shadowColor={"black"}
+                    >
+                      Reality
+                    </LineShadowText>
+                  </h1>
                 </motion.span>
               </motion.h1>
               <motion.p
@@ -49,12 +58,11 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 1 }}
             >
               <InteractiveHoverButton>Some Action</InteractiveHoverButton>
-              <Button
-                variant="outline"
-                size="lg"
-              >
-                View Our Work
-              </Button>
+              <ShinyButton>
+                <span className="flex items-center justify-center text-sm font-bold">
+                  Some Action2
+                </span>
+              </ShinyButton>
             </motion.div>
           </motion.div>
           <motion.div
@@ -65,7 +73,7 @@ export function HeroSection() {
           >
             <div className="relative h-[300px] w-[300px] sm:h-[400px] sm:w-[400px] md:h-[450px] md:w-[350px] lg:h-[500px] lg:w-[400px]">
               <Image
-                src="/placeholder.svg?height=500&width=500"
+                src="/header.svg?height=500&width=500"
                 alt="Hero Image"
                 fill
                 className="object-contain"
