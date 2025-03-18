@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import lottie from "lottie-web";
-import { defineElement } from "lord-icon-element";
+import { useEffect, useRef, useState } from "react";
 
 interface LordIconProps {
   src: string;
@@ -31,11 +29,20 @@ export default function LordIcon({
   delay = 0,
 }: LordIconProps) {
   const iconRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && !customElements.get("lord-icon")) {
-      defineElement(lottie.loadAnimation);
-    }
+    const loadLordIcon = async () => {
+      const lottie = (await import("lottie-web")).default;
+      const { defineElement } = await import("lord-icon-element");
+
+      if (!customElements.get("lord-icon")) {
+        defineElement(lottie.loadAnimation);
+      }
+      setIsLoaded(true);
+    };
+
+    loadLordIcon();
   }, []);
 
   return (
@@ -43,14 +50,19 @@ export default function LordIcon({
       ref={iconRef}
       className={className}
     >
-      {/* @ts-ignore - Custom element that is defined at runtime */}
-      <lord-icon
-        src={src}
-        trigger={trigger}
-        delay={delay}
-        colors={`primary:${colors.primary}, secondary:${colors.secondary}`}
-        style={{ width: `${size}px`, height: `${size}px` }}
-      />
+      {isLoaded ? (
+        // @ts-ignore - Custom element that is defined at runtime
+        <lord-icon
+          src={src}
+          trigger={trigger}
+          delay={delay}
+          colors={`primary:${colors.primary}, secondary:${colors.secondary}`}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        />
+      ) : (
+        // Placeholder div with same dimensions
+        <div style={{ width: `${size}px`, height: `${size}px` }} />
+      )}
     </div>
   );
 }
