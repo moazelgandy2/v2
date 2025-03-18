@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Pointer } from "./components/magicui/pointer";
 import { motion } from "framer-motion";
+import LordIcon from "./components/lord-icon";
 
 export const sections = {
   features: {
@@ -38,7 +39,14 @@ export const sections = {
 
 export const features = [
   {
-    icon: <Braces className="w-10 h-10" />,
+    icon: (
+      <LordIcon
+        src="https://cdn.lordicon.com/ailnzwyn.json"
+        trigger="loop"
+        colors={{ primary: "#121331", secondary: "#000000" }}
+        size={64}
+      />
+    ),
     title: "Clean Code",
     description:
       "We write maintainable, scalable code following best practices and industry standards.",
@@ -61,7 +69,7 @@ export const features = [
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#000"
+            stroke="#08A88A"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -75,7 +83,14 @@ export const features = [
   },
 
   {
-    icon: <Layers className="w-10 h-10" />,
+    icon: (
+      <LordIcon
+        src="https://cdn.lordicon.com/jectmwqf.json"
+        trigger="loop"
+        colors={{ primary: "#121331", secondary: "#000000" }}
+        size={64}
+      />
+    ),
     title: "Modern Stack",
     description:
       "We use cutting-edge technologies to build fast, reliable, and secure applications.",
@@ -98,7 +113,7 @@ export const features = [
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#000"
+            stroke="#08A88A"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -115,7 +130,14 @@ export const features = [
     ),
   },
   {
-    icon: <Globe className="w-10 h-10" />,
+    icon: (
+      <LordIcon
+        src="https://cdn.lordicon.com/rpviwvwn.json"
+        trigger="loop"
+        colors={{ primary: "#121331", secondary: "#000000" }}
+        size={64}
+      />
+    ),
     title: "Global Reach",
     description:
       "Our solutions are designed to work across different markets and regions.",
@@ -138,7 +160,7 @@ export const features = [
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#000"
+            stroke="#08A88A"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -155,7 +177,14 @@ export const features = [
     ),
   },
   {
-    icon: <Users className="w-10 h-10" />,
+    icon: (
+      <LordIcon
+        src="https://cdn.lordicon.com/kdduutaw.json"
+        trigger="loop"
+        colors={{ primary: "#121331", secondary: "#000000" }}
+        size={64}
+      />
+    ),
     title: "User-Centered",
     description:
       "We prioritize user experience in every aspect of our development process.",
@@ -178,7 +207,7 @@ export const features = [
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#000"
+            stroke="#08A88A"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -190,7 +219,14 @@ export const features = [
     ),
   },
   {
-    icon: <Database className="w-10 h-10" />,
+    icon: (
+      <LordIcon
+        src="https://cdn.lordicon.com/fcyboqbm.json"
+        trigger="loop"
+        colors={{ primary: "#121331", secondary: "#000000" }}
+        size={64}
+      />
+    ),
     title: "Scalable Infrastructure",
     description:
       "Our applications are built to handle growth and increasing demands.",
@@ -213,7 +249,7 @@ export const features = [
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#000"
+            stroke="#08A88A"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -226,7 +262,14 @@ export const features = [
     ),
   },
   {
-    icon: <MessageSquare className="w-10 h-10" />,
+    icon: (
+      <LordIcon
+        src="https://cdn.lordicon.com/jdgfsfzr.json"
+        trigger="loop"
+        colors={{ primary: "#121331", secondary: "#000000" }}
+        size={64}
+      />
+    ),
     title: "Ongoing Support",
     description:
       "We provide continuous maintenance and support for all our projects.",
@@ -249,7 +292,7 @@ export const features = [
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#000"
+            stroke="#08A88A"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"

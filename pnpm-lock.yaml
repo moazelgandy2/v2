@@ -16,7 +16,7 @@ importers:
         version: 3.10.0(react-hook-form@7.54.2(react@19.0.0))
       '@lordicon/react':
         specifier: ^1.10.1
-        version: 1.10.1(react@19.0.0)
+        version: 1.10.1(lottie-web@5.12.2)(react@19.0.0)
       '@radix-ui/react-accordion':
         specifier: ^1.2.2
         version: 1.2.3(@types/react-dom@19.0.4(@types/react@19.0.11))(@types/react@19.0.11)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -122,6 +122,12 @@ importers:
       input-otp:
         specifier: 1.4.1
         version: 1.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      lord-icon-element:
+        specifier: ^4.1.2
+        version: 4.1.2
+      lottie-web:
+        specifier: ^5.12.2
+        version: 5.12.2
       lucide-react:
         specifier: ^0.454.0
         version: 0.454.0(react@19.0.0)
@@ -1432,6 +1438,14 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
+  lord-icon-element@4.1.2:
+    resolution: {integrity: sha512-h9wnAn8DHouWerICgZxZnzCsoUic+1dfQznMtLNIMm8j7goqxS4INGNjo7+Wv/54ixlmO4rfJPPkCwaF5jOlGQ==}
+    engines: {node: '>=16.0.0'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
+  lottie-web@5.12.2:
+    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
+
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
@@ -2044,10 +2058,12 @@ snapshots:
 
   '@lordicon/helpers@1.10.1': {}
 
-  '@lordicon/react@1.10.1(react@19.0.0)':
+  '@lordicon/react@1.10.1(lottie-web@5.12.2)(react@19.0.0)':
     dependencies:
       '@lordicon/helpers': 1.10.1
       react: 19.0.0
+    optionalDependencies:
+      lottie-web: 5.12.2
 
   '@next/env@15.1.0': {}
 
@@ -3103,6 +3119,10 @@ snapshots:
   loose-envify@1.4.0:
     dependencies:
       js-tokens: 4.0.0
+
+  lord-icon-element@4.1.2: {}
+
+  lottie-web@5.12.2: {}
 
   lru-cache@10.4.3: {}
 

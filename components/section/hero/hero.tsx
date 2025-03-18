@@ -6,6 +6,7 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { LineShadowText } from "@/components/magicui/line-shadow-text";
 import { HyperText } from "@/components/magicui/hyper-text";
+import LordIcon from "@/components/lord-icon";
 
 export function HeroSection() {
   return (
@@ -72,13 +73,18 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.5 }}
           >
             <div className="relative h-[300px] w-[300px] sm:h-[400px] sm:w-[400px] md:h-[450px] md:w-[350px] lg:h-[500px] lg:w-[400px]">
-              <Image
-                src="/header.svg?height=500&width=500"
-                alt="Hero Image"
-                fill
-                className="object-contain"
-                priority
-              />
+              <div className="relative w-[500px] h-[500px]">
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-blue/20 to-purple/20 rounded-full blur-3xl animate-pulse"
+                  style={{ animationDuration: "8s" }}
+                />
+                <LordIcon
+                  src="https://cdn.lordicon.com/ubpgwkmy.json"
+                  trigger="loop"
+                  colors={{ primary: "#121331", secondary: "#000000" }}
+                  size={500}
+                />
+              </div>
             </div>
             <HeroBackgroundAnimation />
           </motion.div>
