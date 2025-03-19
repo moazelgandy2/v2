@@ -25,7 +25,7 @@ export function ContactSection() {
             Contact Us
           </div>
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-            Let's Build Something Amazing Together
+            Let&apos;s Build Something Amazing Together
           </h2>
           <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
             Ready to start your project? Get in touch with our team to discuss
