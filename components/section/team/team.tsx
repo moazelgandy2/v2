@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import { SectionHeader } from "../section-header";
+import { TextRevealCard } from "@/components/ui/text-reveal-card";
 
 export function TeamSection() {
   const ref = useRef(null);
@@ -13,12 +14,13 @@ export function TeamSection() {
   return (
     <section
       id="team"
-      className="w-full py-12 md:py-24 lg:py-32 bg-muted/50"
+      className="w-full py-8 md:py-16 lg:py-20 bg-muted/50"
     >
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <SectionHeader section={sections.team} />
         </div>
+
         <div
           ref={ref}
           className="grid max-w-5xl grid-cols-1 gap-8 py-12 mx-auto md:grid-cols-2 lg:grid-cols-4"
@@ -26,7 +28,7 @@ export function TeamSection() {
           {team.map((member, index) => (
             <motion.div
               key={index}
-              className="relative overflow-hidden rounded-lg group"
+              className="relative flex justify-center overflow-hidden rounded-lg group"
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -46,6 +48,13 @@ export function TeamSection() {
               </div>
             </motion.div>
           ))}
+        </div>
+        <div className="flex justify-center items-center">
+          <TextRevealCard
+            className="bg-transparent text-center"
+            text="You know the business"
+            revealText="We know the code "
+          ></TextRevealCard>
         </div>
       </div>
     </section>

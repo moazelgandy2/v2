@@ -24,6 +24,7 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <motion.div
               key={index}
+              id={`feature-${index}`}
               className="flex flex-col items-center p-6 space-y-4 overflow-hidden border rounded-lg shadow-sm"
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}

@@ -1,11 +1,3 @@
-import {
-  Braces,
-  Database,
-  Globe,
-  Layers,
-  MessageSquare,
-  Users,
-} from "lucide-react";
 import { Pointer } from "./components/magicui/pointer";
 import { motion } from "framer-motion";
 import LordIcon from "./components/lord-icon";
@@ -18,10 +10,9 @@ export const sections = {
       "We combine technical expertise with creative problem-solving to deliver exceptional software solutions.",
   },
   services: {
-    heading: "Services",
-    title: "What We Offer",
-    description:
-      "Comprehensive software development services tailored to your business needs.",
+    heading: "Our Work",
+    title: "What We Did",
+    description: `We've worked on a wide range of projects, from web development to mobile apps.`,
   },
   team: {
     heading: "Our Team",
@@ -336,26 +327,31 @@ export const services = [
     image: "/placeholder.svg?height=400&width=600",
   },
 ];
+
 export const team = [
   {
     name: "Alex Johnson",
     role: "CEO & Founder",
-    image: "/placeholder.svg?height=300&width=300",
+    image:
+      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Sarah Chen",
     role: "CTO",
-    image: "/placeholder.svg?height=300&width=300",
-  },
-  {
-    name: "Michael Rodriguez",
-    role: "Lead Developer",
-    image: "/placeholder.svg?height=300&width=300",
+    image:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Emma Wilson",
     role: "UX/UI Designer",
-    image: "/placeholder.svg?height=300&width=300",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    name: "Antony Watson",
+    role: "Software Developer",
+    image:
+      "https://images.unsplash.com/photo-1615813967515-e1838c1c5116?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 

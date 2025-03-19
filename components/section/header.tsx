@@ -30,10 +30,10 @@ export function Header() {
             Features
           </Link>
           <Link
-            href="#services"
+            href="#work"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            Services
+            Our Work
           </Link>
           <Link
             href="#team"

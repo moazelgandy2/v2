@@ -3,7 +3,7 @@
 import { Header } from "@/components/section/header";
 import { HeroSection } from "@/components/section/hero/hero";
 import { FeaturesSection } from "@/components/section/features/features";
-import { ServicesSection } from "@/components/section/services/services";
+import { OurWorkSection } from "@/components/section/work/work";
 import { TeamSection } from "@/components/section/team/team";
 import { TestimonialsSection } from "@/components/section/testimonials/testimonials";
 import { ContactSection } from "@/components/section/contact/contact";
@@ -17,7 +17,7 @@ export default function LandingPage() {
       <main>
         <HeroSection />
         <FeaturesSection />
-        <ServicesSection />
+        <OurWorkSection />
         <TeamSection />
         <TestimonialsSection />
         <ContactSection />

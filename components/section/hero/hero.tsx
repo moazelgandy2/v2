@@ -7,6 +7,11 @@ import { ShinyButton } from "@/components/magicui/shiny-button";
 import { LineShadowText } from "@/components/magicui/line-shadow-text";
 import { HyperText } from "@/components/magicui/hyper-text";
 import LordIcon from "@/components/lord-icon";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "@/components/ui/text-reveal-card";
 
 export function HeroSection() {
   return (

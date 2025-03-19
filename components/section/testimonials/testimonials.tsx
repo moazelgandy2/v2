@@ -1,13 +1,14 @@
 "use client";
 
 import { sections, testimonials } from "@/constants";
-import { useInView, motion } from "framer-motion";
-import { useRef } from "react";
 import { SectionHeader } from "../section-header";
+import { Globe } from "@/components/magicui/globe";
+import { Marquee } from "@/components/magicui/marquee";
+import { ReviewCard } from "./card";
 
 export function TestimonialsSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const firstRow = testimonials.slice(0, testimonials.length / 2);
+  const secondRow = testimonials.slice(testimonials.length / 2);
 
   return (
     <section
@@ -18,31 +19,37 @@ export function TestimonialsSection() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <SectionHeader section={sections.testimonials} />
         </div>
-        <div
-          ref={ref}
-          className="grid grid-cols-1 gap-6 py-12 mx-auto md:grid-cols-2 lg:grid-cols-3"
-        >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              className="flex flex-col justify-between p-6 space-y-4 border rounded-lg shadow-sm"
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div>
-                <p className="mb-4 italic text-muted-foreground">
-                  "{testimonial.quote}"
-                </p>
-              </div>
-              <div>
-                <p className="font-semibold">{testimonial.author}</p>
-                <p className="text-sm text-muted-foreground">
-                  {testimonial.company}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+          <Marquee
+            pauseOnHover
+            className="[--duration:20s] w-full"
+          >
+            {firstRow.map((review) => (
+              <ReviewCard
+                key={review.author}
+                {...review}
+              />
+            ))}
+          </Marquee>
+          <Marquee
+            reverse
+            pauseOnHover
+            className="[--duration:20s] w-full"
+          >
+            {secondRow.map((review) => (
+              <ReviewCard
+                key={review.author}
+                {...review}
+              />
+            ))}
+          </Marquee>
+        </div>
+
+        <div className="w-full flex justify-center items-center">
+          <div className="w-2/3 flex justify-center items-center">
+            <Globe className="top-[58px]" />
+          </div>
         </div>
       </div>
     </section>
