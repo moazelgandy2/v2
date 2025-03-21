@@ -1,6 +1,5 @@
 "use client";
 
-import { Pointer } from "@/components/magicui/pointer";
 import { features, sections } from "@/constants";
 import { useInView, motion } from "framer-motion";
 import { useRef } from "react";
@@ -10,6 +9,9 @@ export function FeaturesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
+  const isMobile = () => {
+    return window && window.innerWidth < 768;
+  };
   return (
     <section
       id="features"
@@ -35,7 +37,7 @@ export function FeaturesSection() {
                 <h3 className="text-xl font-bold">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
               </div>
-              {feature.pointer}
+              {!isMobile() && feature.pointer}
             </motion.div>
           ))}
         </div>

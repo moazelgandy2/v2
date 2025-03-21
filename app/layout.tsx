@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CustomPointerProvider } from "@/providers/custom-pointer-provider";
-import { ScrollProgressProvider } from "@/providers/scroll-progress-provider";
+import SplashCursor from "@/providers/splash-cursor";
 
 export const metadata: Metadata = {
   title: "Marketopia",
@@ -15,9 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="overflow-x-hidden scroll-smooth relative">
-        <ScrollProgressProvider className="top-[65px]" />
-        <CustomPointerProvider />
+      <body className="relative overflow-x-hidden scroll-smooth dark">
+        <CustomPointerProvider type="none" />
+        {/* <SplashCursor /> */}
         {children}
       </body>
     </html>
