@@ -2,16 +2,31 @@
 
 import { features, sections } from "@/constants";
 import { useInView, motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "../section-header";
 
 export function FeaturesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const isMobile = () => {
-    return window && window.innerWidth < 768;
-  };
+  useEffect(() => {
+    setIsMounted(true);
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Initial check
+    checkIfMobile();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkIfMobile);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkIfMobile);
+  }, []);
+
   return (
     <section
       id="features"
@@ -37,7 +52,7 @@ export function FeaturesSection() {
                 <h3 className="text-xl font-bold">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
               </div>
-              {!isMobile() && feature.pointer}
+              {isMounted && !isMobile && feature.pointer}
             </motion.div>
           ))}
         </div>

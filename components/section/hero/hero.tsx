@@ -7,12 +7,12 @@ import Threads from "@/components/threads-bg";
 
 export function Hero() {
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden bg-[hsl(222_47%_11%)] min-h-screen">
       <div className="absolute inset-0 z-0 flex justify-center items-center">
         <Threads
-          amplitude={1.5}
-          distance={1.2}
-          color={[0.73, 0.55, 1]}
+          amplitude={2.2}
+          distance={1.8}
+          color={[0, 0.75, 1]}
           enableMouseInteraction={true}
         />
       </div>
