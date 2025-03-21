@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import HeroContent from "./hero-content";
 import CodeSection from "./code-section";
 import Threads from "@/components/threads-bg";
