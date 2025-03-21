@@ -21,12 +21,6 @@ export default function CodeDisplay() {
     if (currentLineIndex < codeLines.length && !isComplete) {
       typingInterval.current = setTimeout(() => {
         setCurrentLineIndex((prev) => prev + 1);
-
-        // Play typing sound effect
-        const audio = new Audio();
-        audio.src = `/sounds/keypress-${Math.floor(Math.random() * 3) + 1}.mp3`;
-        audio.volume = 0.1;
-        audio.play().catch(() => {});
       }, getRandomTypingDelay());
 
       return () => {

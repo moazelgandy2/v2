@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const CodeLine = memo(
   ({
@@ -13,25 +14,37 @@ export const CodeLine = memo(
     const isActive = activeLineIndex === i;
 
     // Determine colors based on line type
-    const highlightColor = isActive ? getHighlightColor(line.type) : "";
+    const highlightColor = getHighlightColor(line.type);
+    const shadowColor = getShadowColor(line.type);
 
     return (
       <div className={`h-6 ${line.color} relative`}>
-        {isActive && (
-          <div className="absolute -ml-2 h-6 w-[calc(100%+2rem)] rounded bg-[#7C4DFF]/10" />
-        )}
+        <AnimatePresence>
+          {isActive && (
+            <motion.div
+              className="absolute -ml-2 h-6 w-[calc(100%+2rem)] rounded bg-[#7C4DFF]/10"
+              initial={{ opacity: 0, scaleX: 0.8 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              exit={{ opacity: 0, scaleX: 0.9 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            />
+          )}
+        </AnimatePresence>
 
-        <span
+        <motion.span
           className="relative"
-          style={{
-            color: highlightColor,
-            textShadow: isActive
-              ? `0 0 8px ${getShadowColor(line.type)}`
-              : "none",
+          animate={{
+            color: isActive ? highlightColor : "",
+            textShadow: isActive ? `0 0 8px ${shadowColor}` : "none",
+            scale: isActive ? 1.05 : 1,
+          }}
+          transition={{
+            duration: 0.3,
+            ease: "easeOut",
           }}
         >
           {line.content}
-        </span>
+        </motion.span>
       </div>
     );
   }
