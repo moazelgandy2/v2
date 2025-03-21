@@ -66,6 +66,11 @@ module.exports = {
             height: "var(--radix-accordion-content-height)",
           },
         },
+        spin: {
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
         "accordion-up": {
           from: {
             height: "var(--radix-accordion-content-height)",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CustomPointerProvider } from "@/providers/custom-pointer-provider";
+import SplashScreen from "@/providers/splash-screen";
 import SplashCursor from "@/providers/splash-cursor";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function RootLayout({
       <body className="relative overflow-x-hidden scroll-smooth dark">
         <CustomPointerProvider type="none" />
         {/* <SplashCursor /> */}
-        {children}
+        <SplashScreen>{children}</SplashScreen>
       </body>
     </html>
   );
