@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "@/components/section/header";
-import { HeroSection } from "@/components/section/hero/hero";
+import { Hero } from "@/components/section/hero/hero";
 import { FeaturesSection } from "@/components/section/features/features";
 import { OurWorkSection } from "@/components/section/work/work";
 import { TeamSection } from "@/components/section/team/team";
@@ -14,8 +14,8 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <main>
-        <HeroSection />
+      <main className="w-full">
+        <Hero />
         <FeaturesSection />
         <OurWorkSection />
         <TeamSection />

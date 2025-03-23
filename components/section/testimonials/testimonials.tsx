@@ -20,35 +20,33 @@ export function TestimonialsSection() {
           <SectionHeader section={sections.testimonials} />
         </div>
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <Marquee
-            pauseOnHover
-            className="[--duration:20s] w-full"
-          >
-            {firstRow.map((review) => (
-              <ReviewCard
-                key={review.author}
-                {...review}
-              />
-            ))}
-          </Marquee>
-          <Marquee
-            reverse
-            pauseOnHover
-            className="[--duration:20s] w-full"
-          >
-            {secondRow.map((review) => (
-              <ReviewCard
-                key={review.author}
-                {...review}
-              />
-            ))}
-          </Marquee>
-        </div>
+        <Marquee
+          reverse
+          pauseOnHover
+          className="[--duration:20s] w-full"
+        >
+          {firstRow.map((review) => (
+            <ReviewCard
+              key={review.author}
+              {...review}
+            />
+          ))}
+        </Marquee>
+        <Marquee
+          pauseOnHover
+          className="[--duration:20s] w-full"
+        >
+          {secondRow.map((review) => (
+            <ReviewCard
+              key={review.author}
+              {...review}
+            />
+          ))}
+        </Marquee>
 
-        <div className="w-full flex justify-center items-center">
-          <div className="w-2/3 flex justify-center items-center">
-            <Globe className="top-[58px]" />
+        <div className="flex items-center justify-center w-full">
+          <div className="flex items-center justify-center w-2/3">
+            <Globe className="top-[58px] text-black" />
           </div>
         </div>
       </div>

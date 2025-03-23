@@ -2,12 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import { Circle } from "lucide-react";
+import OGLPolylines from "@/components/ogl";
 
-export const CustomPointerProvider = () => {
+export const CustomPointerProvider = ({ type }: { type: "lines" | "none" }) => {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isVisible, setIsVisible] = useState(true);
   const [isFeatureCard, setIsFeatureCard] = useState(false);
   const [isClient, setIsClient] = useState(false);
+
+  const isMobile = () => {
+    return window && window.innerWidth < 768;
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -43,6 +48,10 @@ export const CustomPointerProvider = () => {
 
   if (!isClient) return null;
 
+  if (isMobile()) {
+    return;
+  }
+
   return (
     <>
       <div
@@ -59,8 +68,7 @@ export const CustomPointerProvider = () => {
       >
         <Circle
           size={20}
-          color="#08A88A"
-          className="animate-bounce"
+          color="#00BFFF"
         />
       </div>
       <style
@@ -92,6 +100,8 @@ export const CustomPointerProvider = () => {
           }}
         />
       )}
+
+      {type === "lines" && <OGLPolylines />}
     </>
   );
 };

@@ -132,7 +132,7 @@ export function OurWorkSection() {
         <div className="flex w-full justify-center items-center mt-8">
           <Tabs
             defaultValue="all"
-            className="w-full flex justify-center items-center flex-col"
+            className="w-full flex px-8 justify-center items-center flex-col"
           >
             <TabsList className="flex justify-center items-center">
               <TabsTrigger value="all">All</TabsTrigger>

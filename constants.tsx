@@ -1,6 +1,6 @@
 import { Pointer } from "./components/magicui/pointer";
 import { motion } from "framer-motion";
-import LordIcon from "./components/lord-icon";
+import { LordIcon } from "./components/lord-icon";
 
 export const sections = {
   features: {
@@ -32,9 +32,9 @@ export const features = [
   {
     icon: (
       <LordIcon
-        src="https://cdn.lordicon.com/ailnzwyn.json"
+        src="/icons/code.json"
         trigger="loop"
-        colors={{ primary: "#121331", secondary: "#000000" }}
+        colors={{ primary: "#ffffff", secondary: "#e86830" }}
         size={64}
       />
     ),
@@ -76,7 +76,7 @@ export const features = [
   {
     icon: (
       <LordIcon
-        src="https://cdn.lordicon.com/jectmwqf.json"
+        src="/icons/layers.json"
         trigger="loop"
         colors={{ primary: "#121331", secondary: "#000000" }}
         size={64}
@@ -123,7 +123,7 @@ export const features = [
   {
     icon: (
       <LordIcon
-        src="https://cdn.lordicon.com/rpviwvwn.json"
+        src="/icons/globe.json"
         trigger="loop"
         colors={{ primary: "#121331", secondary: "#000000" }}
         size={64}
@@ -170,7 +170,7 @@ export const features = [
   {
     icon: (
       <LordIcon
-        src="https://cdn.lordicon.com/kdduutaw.json"
+        src="/icons/first.json"
         trigger="loop"
         colors={{ primary: "#121331", secondary: "#000000" }}
         size={64}
@@ -212,7 +212,7 @@ export const features = [
   {
     icon: (
       <LordIcon
-        src="https://cdn.lordicon.com/fcyboqbm.json"
+        src="/icons/growth.json"
         trigger="loop"
         colors={{ primary: "#121331", secondary: "#000000" }}
         size={64}
@@ -255,7 +255,7 @@ export const features = [
   {
     icon: (
       <LordIcon
-        src="https://cdn.lordicon.com/jdgfsfzr.json"
+        src="/icons/support.json"
         trigger="loop"
         colors={{ primary: "#121331", secondary: "#000000" }}
         size={64}
@@ -364,6 +364,12 @@ export const testimonials = [
   },
   {
     quote:
+      "Working with Company transformed our business. Their team delivered a solution that exceeded our expectations.",
+    author: "Jane Smith2",
+    company: "TechCorp CEO",
+  },
+  {
+    quote:
       "The attention to detail and technical expertise of the Company team is unmatched. Highly recommended!",
     author: "David Lee",
     company: "Innovate Inc.",
@@ -374,4 +380,50 @@ export const testimonials = [
     author: "Maria Garcia",
     company: "StartUp Founder",
   },
+];
+
+export const codeLines = [
+  {
+    type: "comment",
+    content: "// Marketopia Project",
+    color: "text-[#FF548E]",
+  },
+  {
+    type: "import",
+    content: "import { createApp } from '@core';",
+    color: "text-[#B56EFD]",
+  },
+  { type: "blank", content: "", color: "text-gray-300" },
+  { type: "const", content: "const config = {", color: "text-white" },
+  {
+    type: "property",
+    content: "  name: 'Enterprise Solution',",
+    color: "text-[#00C6FF]",
+  },
+  { type: "property", content: "  theme: {", color: "text-[#00C6FF]" },
+  {
+    type: "value",
+    content: "    primary: '#FFE259'",
+    color: "text-[#FFE259]",
+  },
+  { type: "property", content: "  },", color: "text-[#00C6FF]" },
+  {
+    type: "property",
+    content: "  features: ['cloud', 'analytics', 'ai']",
+    color: "text-[#00C6FF]",
+  },
+  { type: "const", content: "};", color: "text-white" },
+  { type: "blank", content: "", color: "text-gray-300" },
+  {
+    type: "comment",
+    content: "// Initialize application",
+    color: "text-[#FF548E]",
+  },
+  {
+    type: "const",
+    content: "const app = createApp(config);",
+    color: "text-white",
+  },
+  { type: "function", content: "app.initialize();", color: "text-[#7C4DFF]" },
+  { type: "function", content: "app.launch();", color: "text-[#7C4DFF]" },
 ];

@@ -1,6 +1,5 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
+import React from "react";
+import dynamic from "next/dynamic";
 
 interface LordIconProps {
   src: string;
@@ -16,53 +15,50 @@ interface LordIconProps {
     secondary?: string;
   };
   size?: number;
-  className?: string;
   delay?: number;
+  className?: string;
 }
 
-export default function LordIcon({
+const LordIconClient = ({
   src,
-  trigger = "loop",
-  colors = { primary: "#121331", secondary: "#08a88a" },
+  trigger = "hover",
+  colors = {
+    primary: "#121331",
+    secondary: "#08a88a",
+  },
   size = 32,
+  delay = 1000,
   className = "",
-  delay = 0,
-}: LordIconProps) {
-  const iconRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const loadLordIcon = async () => {
+}: LordIconProps) => {
+  React.useEffect(() => {
+    const initLordIcon = async () => {
       const lottie = (await import("lottie-web")).default;
       const { defineElement } = await import("lord-icon-element");
 
       if (!customElements.get("lord-icon")) {
         defineElement(lottie.loadAnimation);
       }
-      setIsLoaded(true);
     };
 
-    loadLordIcon();
+    initLordIcon();
   }, []);
 
   return (
-    <div
-      ref={iconRef}
+    // @ts-ignore - Custom element that is defined at runtime
+    <lord-icon
+      colors={`primary:${colors.primary},secondary:${colors.secondary}`}
+      src={src}
+      trigger={trigger}
+      delay={delay}
+      style={{
+        width: size,
+        height: size,
+      }}
       className={className}
-    >
-      {isLoaded ? (
-        // @ts-ignore - Custom element that is defined at runtime
-        <lord-icon
-          src={src}
-          trigger={trigger}
-          delay={delay}
-          colors={`primary:${colors.primary}, secondary:${colors.secondary}`}
-          style={{ width: `${size}px`, height: `${size}px` }}
-        />
-      ) : (
-        // Placeholder div with same dimensions
-        <div style={{ width: `${size}px`, height: `${size}px` }} />
-      )}
-    </div>
+    />
   );
-}
+};
+
+export const LordIcon = dynamic(() => Promise.resolve(LordIconClient), {
+  ssr: false,
+}) as React.FC<LordIconProps>;

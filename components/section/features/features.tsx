@@ -1,14 +1,28 @@
 "use client";
 
-import { Pointer } from "@/components/magicui/pointer";
 import { features, sections } from "@/constants";
 import { useInView, motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "../section-header";
 
 export function FeaturesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkIfMobile();
+
+    window.addEventListener("resize", checkIfMobile);
+
+    return () => window.removeEventListener("resize", checkIfMobile);
+  }, []);
 
   return (
     <section
@@ -35,7 +49,7 @@ export function FeaturesSection() {
                 <h3 className="text-xl font-bold">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
               </div>
-              {feature.pointer}
+              {isMounted && !isMobile && feature.pointer}
             </motion.div>
           ))}
         </div>
