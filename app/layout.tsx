@@ -19,6 +19,7 @@ export default function RootLayout({
       <body className="relative overflow-x-hidden scroll-smooth dark">
         <CustomPointerProvider type="none" />
         <SplashScreen>{children}</SplashScreen>
+        <SplashCursor />
       </body>
     </html>
   );
