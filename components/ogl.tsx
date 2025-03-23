@@ -20,14 +20,12 @@ const OGLPolylines: React.FC = () => {
   const mouseRef = useRef<Vec3>(new Vec3());
   const animationRef = useRef<number | null>(null);
 
-  // Helper function for random values
   const random = (a: number, b: number): number => {
     const alpha = Math.random();
     return a * (1.0 - alpha) + b * alpha;
   };
 
-  // Shader for the polylines
-  const vertex = /* glsl */ `
+  const vertex = `
     precision highp float;
 
     attribute vec3 position;
@@ -74,11 +72,9 @@ const OGLPolylines: React.FC = () => {
     }
   `;
 
-  // Setup function to initialize the renderer and scene
   const setupScene = (): void => {
     if (!canvasRef.current) return;
 
-    // Create renderer with transparent background
     const renderer = new Renderer({
       dpr: 2,
       canvas: canvasRef.current,
@@ -88,17 +84,13 @@ const OGLPolylines: React.FC = () => {
     gl.clearColor(0, 0, 0, 0); // Set clear color with 0 alpha (fully transparent)
     rendererRef.current = renderer;
 
-    // Create scene
     const scene = new Transform();
     sceneRef.current = scene;
 
-    // Create lines
     const lines: LineType[] = [];
     linesRef.current = lines;
 
-    // Create multiple colored lines
     ["#1B86F8", "#E93656", "#A51AFB", "#311847"].forEach((color) => {
-      // Store values for each line's spring movement
       const line = {
         spring: random(0.02, 0.1),
         friction: random(0.7, 0.95),
@@ -107,12 +99,10 @@ const OGLPolylines: React.FC = () => {
         points: [] as Vec3[],
       } as LineType;
 
-      // Create array of Vec3s for the line points
       const count = 20;
       const points = line.points;
       for (let i = 0; i < count; i++) points.push(new Vec3());
 
-      // Create the polyline
       line.polyline = new Polyline(gl, {
         points,
         vertex,
@@ -126,21 +116,17 @@ const OGLPolylines: React.FC = () => {
       lines.push(line);
     });
 
-    // Set initial size
     handleResize();
   };
 
-  // Handle window resize
   const handleResize = (): void => {
     if (!rendererRef.current) return;
 
     rendererRef.current.setSize(window.innerWidth, window.innerHeight);
 
-    // Update polylines resolution uniforms
     linesRef.current.forEach((line) => line.polyline.resize());
   };
 
-  // Handle mouse/touch movement
   const updateMouse = (
     e: MouseEvent | TouchEvent,
     isScroll: boolean = false
@@ -150,7 +136,6 @@ const OGLPolylines: React.FC = () => {
     const gl = rendererRef.current.gl;
     let clientX: number, clientY: number;
 
-    // Get client coordinates accounting for both mouse and touch events
     if ("changedTouches" in e && e.changedTouches.length) {
       clientX = e.changedTouches[0].clientX;
       clientY = e.changedTouches[0].clientY;
@@ -158,20 +143,16 @@ const OGLPolylines: React.FC = () => {
       clientX = e.clientX;
       clientY = e.clientY;
     } else {
-      return; // Exit if we can't get coordinates
+      return;
     }
 
-    // Calculate coordinates relative to the canvas
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
 
-    // Get position relative to canvas
     const x = clientX;
     const y = clientY;
 
-    // Only update the mouse position if not triggered by scroll
     if (!isScroll) {
-      // Get mouse value in -1 to 1 range, with y flipped
       mouseRef.current.set(
         (x / gl.renderer.width) * 2 - 1,
         (y / gl.renderer.height) * -2 + 1,
@@ -180,17 +161,14 @@ const OGLPolylines: React.FC = () => {
     }
   };
 
-  // Animation update function
   const update = (): void => {
     if (!rendererRef.current || !sceneRef.current) return;
 
     const tmp = new Vec3();
 
     linesRef.current.forEach((line) => {
-      // Update polyline input points
       for (let i = line.points.length - 1; i >= 0; i--) {
         if (!i) {
-          // For the first point, spring ease it to the mouse position
           tmp
             .copy(mouseRef.current)
             .add(line.mouseOffset)
@@ -199,7 +177,6 @@ const OGLPolylines: React.FC = () => {
           line.mouseVelocity.add(tmp).multiply(line.friction);
           line.points[i].add(line.mouseVelocity);
         } else {
-          // The rest of the points ease to the point in front of them, making a line
           line.points[i].lerp(line.points[i - 1], 0.9);
         }
       }
@@ -210,20 +187,12 @@ const OGLPolylines: React.FC = () => {
     animationRef.current = requestAnimationFrame(update);
   };
 
-  // Setup effect that runs once on component mount
   useEffect(() => {
     setupScene();
 
-    // Add event listeners
     window.addEventListener("resize", handleResize);
 
-    // Handle scroll without moving the cursor
-    // This function exists to keep the cursor position stable
-    // but doesn't actively update when scrolling
-    const handleScroll = () => {
-      // We don't need to simulate a mouse event on scroll anymore
-      // The cursor will only update on actual mouse movement
-    };
+    const handleScroll = () => {};
 
     window.addEventListener("scroll", handleScroll);
 
@@ -234,13 +203,10 @@ const OGLPolylines: React.FC = () => {
       window.addEventListener("mousemove", updateMouse as EventListener);
     }
 
-    // Hide the default cursor
     document.body.style.cursor = "none";
 
-    // Start animation loop
     animationRef.current = requestAnimationFrame(update);
 
-    // Cleanup on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
@@ -256,7 +222,6 @@ const OGLPolylines: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
 
-      // Restore the default cursor
       document.body.style.cursor = "auto";
     };
   }, []);
@@ -268,7 +233,7 @@ const OGLPolylines: React.FC = () => {
         className="block w-full h-screen"
         style={{
           backgroundColor: "transparent",
-          position: "fixed", // Keep it fixed during scrolling
+          position: "fixed",
           top: 0,
           left: 0,
         }}

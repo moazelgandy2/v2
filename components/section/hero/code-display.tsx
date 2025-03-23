@@ -14,7 +14,6 @@ export default function CodeDisplay() {
   const [scope, animate] = useAnimate();
   const typingInterval = useRef<NodeJS.Timeout | null>(null);
 
-  // Random typing delay to mimic human typing
   const getRandomTypingDelay = () => Math.floor(Math.random() * 80) + 50;
 
   useEffect(() => {
@@ -30,24 +29,20 @@ export default function CodeDisplay() {
       setIsComplete(true);
 
       const highlightLines = async () => {
-        // Pause for dramatic effect
         await new Promise((resolve) => setTimeout(resolve, 700));
 
-        // First pass - rapidly analyze all lines sequentially
         for (let i = 0; i < codeLines.length; i++) {
           setActiveLineIndex(i as any);
           await new Promise((resolve) => setTimeout(resolve, 70));
           setActiveLineIndex(null);
         }
 
-        // Second pass - highlight important sections
         const importantLines = [1, 4, 6, 8, 13, 14];
         for (const line of importantLines) {
           setActiveLineIndex(line as any);
           await new Promise((resolve) => setTimeout(resolve, 350));
         }
 
-        // Final highlight of the function calls
         setActiveLineIndex(null);
         await new Promise((resolve) => setTimeout(resolve, 300));
 
