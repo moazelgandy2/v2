@@ -46,13 +46,11 @@ export default function CodeDisplay() {
         setActiveLineIndex(null);
         await new Promise((resolve) => setTimeout(resolve, 300));
 
-        // Highlight the final calls with a staggered effect
         setActiveLineIndex(13 as any);
         await new Promise((resolve) => setTimeout(resolve, 400));
         setActiveLineIndex(14 as any);
         await new Promise((resolve) => setTimeout(resolve, 800));
 
-        // Reset for next cycle
         setActiveLineIndex(null);
         setTimeout(() => {
           setCurrentLineIndex(0);
@@ -64,7 +62,6 @@ export default function CodeDisplay() {
     }
   }, [currentLineIndex, isComplete, animate]);
 
-  // Custom cursor animation
   const cursorVariants = {
     blink: {
       opacity: [1, 1, 0, 0, 1],
@@ -130,7 +127,6 @@ export default function CodeDisplay() {
         </div>
       </motion.div>
 
-      {/* Overlay effect when highlighting */}
       {activeLineIndex !== null && (
         <motion.div
           className="absolute inset-0 bg-black/10 pointer-events-none"

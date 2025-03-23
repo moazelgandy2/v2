@@ -13,7 +13,6 @@ export const CodeLine = memo(
   }) => {
     const isActive = activeLineIndex === i;
 
-    // Determine colors based on line type
     const highlightColor = getHighlightColor(line.type);
     const shadowColor = getShadowColor(line.type);
 
@@ -50,7 +49,6 @@ export const CodeLine = memo(
   }
 );
 
-// Function to determine highlight color based on type
 function getHighlightColor(type: string): string {
   switch (type) {
     case "comment":
@@ -68,7 +66,6 @@ function getHighlightColor(type: string): string {
   }
 }
 
-// Function to determine shadow color based on type
 function getShadowColor(type: string): string {
   switch (type) {
     case "comment":

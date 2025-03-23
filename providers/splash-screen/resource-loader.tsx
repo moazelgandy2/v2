@@ -2,9 +2,7 @@
 
 import { useEffect } from "react";
 
-// List of critical resources to preload
 const CRITICAL_RESOURCES = [
-  // Images
   "/logo2.png",
   "/favicon.ico",
   "icons/code.json",
