@@ -9,6 +9,7 @@ export function Footer() {
           <img
             className="w-6 h-6"
             src="/logo2.png"
+            alt="Marketopia Logo"
           />
           <span>Marketopia</span>
         </div>
