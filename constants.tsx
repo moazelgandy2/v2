@@ -385,12 +385,12 @@ export const testimonials = [
 export const codeLines = [
   {
     type: "comment",
-    content: "// DevSphere Project",
+    content: "// Marketopia Project",
     color: "text-[#FF548E]",
   },
   {
     type: "import",
-    content: "import { createApp } from '@devsphere/core';",
+    content: "import { createApp } from '@core';",
     color: "text-[#B56EFD]",
   },
   { type: "blank", content: "", color: "text-gray-300" },

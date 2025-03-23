@@ -68,7 +68,7 @@ export const CustomPointerProvider = ({ type }: { type: "lines" | "none" }) => {
       >
         <Circle
           size={20}
-          color="#F97B1F"
+          color="#00BFFF"
         />
       </div>
       <style

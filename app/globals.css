@@ -79,6 +79,24 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #0f1729;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #161f31;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1a2537;
+  }
 }
 
 @keyframes gradient-shift {
