@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -17,12 +17,13 @@ import {
 } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { CheckCheck, X } from "lucide-react";
+import { CheckCheck, LoaderCircle, X } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export function ContactSection() {
   const formRef = useRef(null);
   const isInView = useInView(formRef, { once: true, amount: 0.2 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formSchema = z.object({
     firstname: z.string().min(3, { message: "First name is required" }),
@@ -74,6 +75,7 @@ export function ContactSection() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      setIsSubmitting(true);
       const res = await fetch(
         `https://admin.programming.marketopiateam.com/api/contactus`,
         {
@@ -114,6 +116,8 @@ export function ContactSection() {
           </div>
         ),
       });
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -243,8 +247,13 @@ export function ContactSection() {
               <Button
                 className="w-full"
                 type="submit"
+                disabled={isSubmitting}
               >
-                Send Message
+                {!isSubmitting ? (
+                  "Send Message"
+                ) : (
+                  <LoaderCircle className="animate-spin w-4 h-4" />
+                )}
               </Button>
             </motion.div>
           </form>
