@@ -95,16 +95,28 @@ export function OurWorkSection({ projects }: { projects: ProjectsType }) {
               <TabsTrigger value="android">Android</TabsTrigger>
               <TabsTrigger value="ios">IOS</TabsTrigger>
             </TabsList>
-            <TabsContent value="all">
+            <TabsContent
+              className="w-full"
+              value="all"
+            >
               <Carousel items={allCards} />
             </TabsContent>
-            <TabsContent value="web">
+            <TabsContent
+              className="w-full"
+              value="web"
+            >
               <Carousel items={webCards} />
             </TabsContent>
-            <TabsContent value="android">
+            <TabsContent
+              className="w-full"
+              value="android"
+            >
               <Carousel items={androidCards} />
             </TabsContent>
-            <TabsContent value="ios">
+            <TabsContent
+              className="w-full"
+              value="ios"
+            >
               <Carousel items={iosCards} />
             </TabsContent>
           </Tabs>

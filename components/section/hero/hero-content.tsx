@@ -200,7 +200,7 @@ export default function HeroContent() {
         </Link>
 
         <Link
-          href="#our-work"
+          href="#work"
           className="group relative px-6 py-3 overflow-hidden rounded-md border border-[rgba(255,255,255,0.1)]"
         >
           <div className="absolute inset-0 bg-[rgba(255,255,255,0.05)]"></div>
