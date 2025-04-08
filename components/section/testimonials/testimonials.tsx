@@ -1,12 +1,17 @@
 "use client";
 
-import { sections, testimonials } from "@/constants";
+import { sections } from "@/constants";
 import { SectionHeader } from "../section-header";
 import { Globe } from "@/components/magicui/globe";
 import { Marquee } from "@/components/magicui/marquee";
 import { ReviewCard } from "./card";
+import { TestimonialsType } from "@/types";
 
-export function TestimonialsSection() {
+export function TestimonialsSection({
+  testimonials,
+}: {
+  testimonials: TestimonialsType;
+}) {
   const firstRow = testimonials.slice(0, testimonials.length / 2);
   const secondRow = testimonials.slice(testimonials.length / 2);
 
@@ -21,13 +26,14 @@ export function TestimonialsSection() {
         </div>
 
         <Marquee
+          key={"marquee1"}
           reverse
           pauseOnHover
           className="[--duration:20s] w-full"
         >
           {firstRow.map((review) => (
             <ReviewCard
-              key={review.author}
+              key={review.name}
               {...review}
             />
           ))}
@@ -38,7 +44,7 @@ export function TestimonialsSection() {
         >
           {secondRow.map((review) => (
             <ReviewCard
-              key={review.author}
+              key={review.name}
               {...review}
             />
           ))}

@@ -1,11 +1,12 @@
 "use client";
 
-import { features, sections } from "@/constants";
+import { sections } from "@/constants";
 import { useInView, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "../section-header";
+import { FeaturesType } from "@/types";
 
-export function FeaturesSection() {
+export function FeaturesSection({ features }: { features: FeaturesType }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [isMounted, setIsMounted] = useState(false);

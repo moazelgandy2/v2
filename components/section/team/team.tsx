@@ -1,13 +1,14 @@
 "use client";
 
-import { sections, team } from "@/constants";
+import { sections } from "@/constants";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import { SectionHeader } from "../section-header";
 import { TextRevealCard } from "@/components/ui/text-reveal-card";
+import { TeamType } from "@/types";
 
-export function TeamSection() {
+export function TeamSection({ team }: { team: TeamType }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -35,16 +36,16 @@ export function TeamSection() {
               whileHover={{ y: -5 }}
             >
               <Image
-                src={member.image || "/placeholder.svg"}
-                alt={member.name}
+                src={member.media[0].original_url || "/placeholder.svg"}
+                alt={member.firstname}
                 width={300}
                 height={300}
                 className="object-cover transition-transform aspect-square group-hover:scale-105"
               />
               <div className="absolute inset-0 transition-opacity opacity-0 bg-gradient-to-t from-black/80 to-transparent group-hover:opacity-100" />
               <div className="absolute bottom-0 left-0 right-0 p-4 text-white transition-opacity opacity-0 group-hover:opacity-100">
-                <h3 className="font-bold">{member.name}</h3>
-                <p className="text-sm">{member.role}</p>
+                <h3 className="font-bold">{member.firstname}</h3>
+                <p className="text-sm">{member.position}</p>
               </div>
             </motion.div>
           ))}

@@ -1,16 +1,24 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
 export const ReviewCard = ({
-  author,
-  company,
-  quote,
+  name,
+  position,
+  opinion,
+  media,
 }: {
-  author: string;
-  company: string;
-  quote: string;
+  name: string;
+  position: string;
+  opinion: string;
+  project_id: string;
+  media: [
+    {
+      name: string;
+      original_url: string;
+    }
+  ];
 }) => {
   return (
     <figure
@@ -22,16 +30,17 @@ export const ReviewCard = ({
     >
       <div className="flex flex-row items-center gap-2">
         <Avatar>
-          <AvatarFallback>{author.slice(0, 2)}</AvatarFallback>
+          <AvatarImage src={media[0].original_url} />
+          <AvatarFallback>{name.slice(0, 2)}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">
-            {author}
+            {name}
           </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{company}</p>
+          <p className="text-xs font-medium dark:text-white/40">{position}</p>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm">{quote}</blockquote>
+      <blockquote className="mt-2 text-sm">{opinion}</blockquote>
     </figure>
   );
 };
