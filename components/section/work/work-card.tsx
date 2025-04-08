@@ -1,12 +1,5 @@
 "use client";
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  createContext,
-  useContext,
-  JSX,
-} from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
@@ -17,7 +10,7 @@ import { CarouselContext } from "./cards-carousel";
 import { BlurImage } from "./blur-card-image";
 
 type Card = {
-  src: string;
+  src?: string;
   title: string;
   category: string;
   content: React.ReactNode;
@@ -81,7 +74,7 @@ export const WorkCard = ({
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit  z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
+              className="max-w-5xl  border mx-auto bg-white dark:bg-neutral-900 h-fit  z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
             >
               <button
                 className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center"
@@ -127,7 +120,7 @@ export const WorkCard = ({
           </motion.p>
         </div>
         <BlurImage
-          src={card.src}
+          src={card.src || ""}
           alt={card.title}
           fill
           className="object-cover absolute z-10 inset-0"

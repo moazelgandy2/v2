@@ -1,5 +1,6 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Code } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
@@ -19,6 +20,7 @@ export function Header() {
           <img
             className="w-6 h-6"
             src="/logo2.png"
+            alt="Marketopia Logo"
           />
           <span>Marketopia</span>
         </Link>

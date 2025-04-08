@@ -4,10 +4,118 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { CheckCheck, X } from "lucide-react";
+import confetti from "canvas-confetti";
 
 export function ContactSection() {
   const formRef = useRef(null);
   const isInView = useInView(formRef, { once: true, amount: 0.2 });
+
+  const formSchema = z.object({
+    firstname: z.string().min(3, { message: "First name is required" }),
+    lastname: z.string().min(3, { message: "Last name is required" }),
+    email: z.string().email({ message: "Invalid email address" }),
+    subject: z.string().min(4, { message: "Subject is required" }),
+    message: z.string().min(10, { message: "Message is required" }),
+  });
+
+  const handleConfetti = () => {
+    const duration = 5 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    const randomInRange = (min: number, max: number) =>
+      Math.random() * (max - min) + min;
+
+    const interval = window.setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
+    }, 250);
+  };
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstname: "",
+      lastname: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await fetch(
+        `https://admin.programming.marketopiateam.com/api/contactus`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstname: values.firstname,
+            lastname: values.lastname,
+            email: values.email,
+            subject: values.subject,
+            message: values.message,
+          }),
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message);
+      }
+      toast({
+        title: "Your message has been sent",
+        description: (
+          <div className="flex items-center space-x-2">
+            <CheckCheck className="w-4 h-4 text-green-500" />
+            <span>Thank you for contacting us!</span>
+          </div>
+        ),
+      });
+      handleConfetti();
+    } catch (e) {
+      toast({
+        title: "Something went wrong. Please try again.",
+        description: (
+          <div className="flex items-center space-x-2">
+            <X className="w-4 h-4 text-red-500" />
+            <span>{"An error occurred while sending your message."}</span>
+          </div>
+        ),
+      });
+    }
+  }
 
   return (
     <section
@@ -32,67 +140,115 @@ export function ContactSection() {
             how we can help bring your ideas to life.
           </p>
         </motion.div>
-        <motion.div
-          ref={formRef}
-          className="space-y-4"
-          initial={{ opacity: 0, x: 50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label
-                htmlFor="first-name"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                First name
-              </label>
-              <Input
-                id="first-name"
-                placeholder="Enter your first name"
-              />
-            </div>
-            <div className="space-y-2">
-              <label
-                htmlFor="last-name"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Last name
-              </label>
-              <Input
-                id="last-name"
-                placeholder="Enter your last name"
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label
-              htmlFor="email"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-8 w-full"
+          >
+            <motion.div
+              ref={formRef}
+              className="space-y-4"
+              initial={{ opacity: 0, x: 50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Email
-            </label>
-            <Input
-              id="email"
-              placeholder="Enter your email"
-              type="email"
-            />
-          </div>
-          <div className="space-y-2">
-            <label
-              htmlFor="message"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Message
-            </label>
-            <Textarea
-              id="message"
-              placeholder="Enter your message"
-              className="min-h-[120px]"
-            />
-          </div>
-          <Button className="w-full">Send Message</Button>
-        </motion.div>
+              <div className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="firstname"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel htmlFor="firstname">First Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your first name"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="lastname"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel htmlFor="lastname">Last Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your last name"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel htmlFor="email">Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your email"
+                          {...field}
+                          type="email"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="subject"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel htmlFor="subject">Subject</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter the subject"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel htmlFor="message">Message</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        rows={6}
+                        placeholder="Enter your message"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button
+                className="w-full"
+                type="submit"
+              >
+                Send Message
+              </Button>
+            </motion.div>
+          </form>
+        </Form>
       </div>
     </section>
   );
