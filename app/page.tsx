@@ -1,11 +1,3 @@
-import { Header } from "@/components/section/header";
-import { Hero } from "@/components/section/hero/hero";
-import { FeaturesSection } from "@/components/section/features/features";
-import { OurWorkSection } from "@/components/section/work/work";
-import { TeamSection } from "@/components/section/team/team";
-import { TestimonialsSection } from "@/components/section/testimonials/testimonials";
-import { ContactSection } from "@/components/section/contact/contact";
-import { Footer } from "@/components/section/footer/footer";
 import {
   FeaturesType,
   ProjectsType,
@@ -14,15 +6,14 @@ import {
 } from "@/types";
 import { notFound } from "next/navigation";
 import { featuresData } from "@/constants";
+import { ClientWrapper } from "./client-wrapper";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 async function fetchData(url: string) {
   try {
     const res = await fetch(url, {
-      next: {
-        tags: ["content"],
-      },
+      cache: "no-store",
     });
 
     if (!res.ok) {
@@ -60,17 +51,11 @@ export default async function LandingPage() {
   const features: FeaturesType = featuresData;
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="w-full">
-        <Hero />
-        <FeaturesSection features={features} />
-        <OurWorkSection projects={projects} />
-        <TeamSection team={team} />
-        {testimonials && <TestimonialsSection testimonials={testimonials} />}
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <ClientWrapper
+      projects={projects}
+      testimonials={testimonials}
+      team={team}
+      features={features}
+    />
   );
 }
