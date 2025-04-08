@@ -28,7 +28,7 @@ export const sections = {
   },
 };
 
-export const features = [
+export const featuresData = [
   {
     icon: (
       <LordIcon

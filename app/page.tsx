@@ -12,50 +12,62 @@ import {
   TeamType,
   TestimonialsType,
 } from "@/types";
+import { notFound } from "next/navigation";
+import { featuresData } from "@/constants";
+
+export const revalidate = 3600;
+
+async function fetchData(url: string) {
+  try {
+    const res = await fetch(url, {
+      next: {
+        tags: ["content"],
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data from ${url}`);
+    }
+
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.error(`Error fetching from ${url}:`, error);
+    return null;
+  }
+}
 
 export default async function LandingPage() {
   const baseUrl = process.env.baseUrl;
+  if (!baseUrl) {
+    throw new Error("baseUrl environment variable is not defined");
+  }
+
   const [projects, testimonials, team]: [
     ProjectsType,
     TestimonialsType,
     TeamType
   ] = await Promise.all([
-    fetch(`${baseUrl}/api/projects`)
-      .then((res) => res.json())
-      .then((data) => data.data),
-    fetch(`${baseUrl}/api/clientsopinion`)
-      .then((res) => res.json())
-      .then((data) => data.data),
-    fetch(`${baseUrl}/api/team`)
-      .then((res) => res.json())
-      .then((data) => data.data),
+    fetchData(`${baseUrl}/api/projects`),
+    fetchData(`${baseUrl}/api/clientsopinion`),
+    fetchData(`${baseUrl}/api/team`),
   ]);
 
-  console.log("projects", projects);
-  console.log("testimonials", testimonials);
+  if (!projects || !team || !testimonials) {
+    notFound();
+  }
 
-  const features: FeaturesType = [];
-  // const team: TeamType = [];
-  // const projects: ProjectsType = await fetch(`${baseUrl}/api/projects`)
-  //   .then((res) => res.json())
-  //   .then((data) => data.data);
-
-  // const testimonials: TestimonialsType = await fetch(
-  //   `${baseUrl}/api/testimonials`
-  // )
-  //   .then((res) => res.json())
-  //   .then((data) => data.data);
+  const features: FeaturesType = featuresData;
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-
       <main className="w-full">
         <Hero />
         <FeaturesSection features={features} />
         <OurWorkSection projects={projects} />
         <TeamSection team={team} />
-        <TestimonialsSection testimonials={testimonials} />
+        {testimonials && <TestimonialsSection testimonials={testimonials} />}
         <ContactSection />
       </main>
       <Footer />
