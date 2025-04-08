@@ -41,36 +41,6 @@ export const featuresData = [
     title: "Clean Code",
     description:
       "We write maintainable, scalable code following best practices and industry standards.",
-    pointer: (
-      <Pointer>
-        <motion.div
-          animate={{
-            scale: [0.8, 1, 0.8],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#08A88A"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
-        </motion.div>
-      </Pointer>
-    ),
   },
 
   {
@@ -85,40 +55,6 @@ export const featuresData = [
     title: "Modern Stack",
     description:
       "We use cutting-edge technologies to build fast, reliable, and secure applications.",
-    pointer: (
-      <Pointer>
-        <motion.div
-          animate={{
-            scale: [0.8, 1, 0.8],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#08A88A"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-            ></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-        </motion.div>
-      </Pointer>
-    ),
   },
   {
     icon: (
@@ -179,35 +115,6 @@ export const featuresData = [
     title: "User-Centered",
     description:
       "We prioritize user experience in every aspect of our development process.",
-    pointer: (
-      <Pointer>
-        <motion.div
-          animate={{
-            scale: [0.8, 1, 0.8],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#08A88A"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M17 11l-5-5-5 5M17 18l-5-5-5 5" />
-          </svg>
-        </motion.div>
-      </Pointer>
-    ),
   },
   {
     icon: (
@@ -221,36 +128,6 @@ export const featuresData = [
     title: "Scalable Infrastructure",
     description:
       "Our applications are built to handle growth and increasing demands.",
-    pointer: (
-      <Pointer>
-        <motion.div
-          animate={{
-            scale: [0.8, 1, 0.8],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#08A88A"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 3v18h18" />
-            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
-          </svg>
-        </motion.div>
-      </Pointer>
-    ),
   },
   {
     icon: (
@@ -264,46 +141,6 @@ export const featuresData = [
     title: "Ongoing Support",
     description:
       "We provide continuous maintenance and support for all our projects.",
-    pointer: (
-      <Pointer>
-        <motion.div
-          animate={{
-            scale: [0.8, 1, 0.8],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#08A88A"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-            ></circle>
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-            <line
-              x1="12"
-              y1="17"
-              x2="12.01"
-              y2="17"
-            ></line>
-          </svg>
-        </motion.div>
-      </Pointer>
-    ),
   },
 ];
 
