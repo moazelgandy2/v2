@@ -50,7 +50,7 @@ export function FeaturesSection({ features }: { features: FeaturesType }) {
                 <h3 className="text-xl font-bold">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
               </div>
-              {isMounted && !isMobile && feature.pointer}
+              {isMounted && !isMobile}
             </motion.div>
           ))}
         </div>

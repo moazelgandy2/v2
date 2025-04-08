@@ -4,7 +4,6 @@ type feature = {
   icon: React.ReactNode;
   title: string;
   description: string;
-  pointer: React.ReactNode;
 };
 
 export type FeaturesType = feature[];

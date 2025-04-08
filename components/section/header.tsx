@@ -57,7 +57,9 @@ export function Header() {
           </Link>
         </nav>
         <div className="flex items-center gap-4">
-          <Button size="sm">Get Started</Button>
+          <Link href="#contact">
+            <Button size="sm">Get Started</Button>
+          </Link>
         </div>
       </div>
     </motion.header>
