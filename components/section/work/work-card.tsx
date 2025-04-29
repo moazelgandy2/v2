@@ -1,11 +1,9 @@
 "use client";
 import React, { useEffect, useRef, useState, useContext } from "react";
 
-import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
-import { ArrowLeft, ArrowRight, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 import { CarouselContext } from "./cards-carousel";
 import { BlurImage } from "./blur-card-image";
 
@@ -84,7 +82,7 @@ export const WorkCard = ({
               </button>
               <motion.p
                 layoutId={layout ? `category-${card.title}` : undefined}
-                className="text-base font-medium text-black dark:text-white"
+                className="text-base font-medium text-black capitalize dark:text-white"
               >
                 {card.category}
               </motion.p>
@@ -108,7 +106,7 @@ export const WorkCard = ({
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-white text-sm md:text-base font-medium font-sans text-left"
+            className="text-white text-sm md:text-base font-medium font-sans text-left capitalize"
           >
             {card.category}
           </motion.p>

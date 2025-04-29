@@ -35,13 +35,24 @@ export function TeamSection({ team }: { team: TeamType }) {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <Image
-                src={member.media[0].original_url || "/placeholder.svg"}
-                alt={member.firstname}
-                width={300}
-                height={300}
-                className="object-cover transition-transform aspect-square group-hover:scale-105"
-              />
+              {member.media.length > 0 ? (
+                <Image
+                  src={member.media[0].original_url || "/placeholder.svg"}
+                  alt={member.firstname}
+                  width={300}
+                  height={300}
+                  className="object-cover transition-transform aspect-square group-hover:scale-105"
+                />
+              ) : (
+                <Image
+                  className=""
+                  src="/placeholder.svg"
+                  alt={member.firstname}
+                  width={300}
+                  height={300}
+                />
+              )}
+
               <div className="absolute inset-0 transition-opacity opacity-0 bg-gradient-to-t from-black/80 to-transparent group-hover:opacity-100" />
               <div className="absolute bottom-0 left-0 right-0 p-4 text-white transition-opacity opacity-0 group-hover:opacity-100">
                 <h3 className="font-bold">{member.firstname}</h3>
