@@ -78,7 +78,7 @@ export function OurWorkSection({ projects }: { projects: ProjectsType }) {
         </div>
         <div className="flex w-full justify-center items-center mt-8">
           <Tabs
-            defaultValue="website"
+            defaultValue="web"
             className="w-full flex px-8 justify-center items-center flex-col"
           >
             <TabsList className="flex justify-center items-center">
