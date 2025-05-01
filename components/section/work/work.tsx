@@ -78,11 +78,10 @@ export function OurWorkSection({ projects }: { projects: ProjectsType }) {
         </div>
         <div className="flex w-full justify-center items-center mt-8">
           <Tabs
-            defaultValue="all"
+            defaultValue="website"
             className="w-full flex px-8 justify-center items-center flex-col"
           >
             <TabsList className="flex justify-center items-center">
-              <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="web">Website</TabsTrigger>
               <TabsTrigger value="android">Android</TabsTrigger>
               <TabsTrigger value="ios">IOS</TabsTrigger>
