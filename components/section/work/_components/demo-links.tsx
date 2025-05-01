@@ -29,19 +29,6 @@ export const ProjectDemoCredential = ({
         <CardTitle className="text-xl font-semibold">Project Details</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="prose dark:prose-invert max-w-none">
-          <h3 className="text-lg font-medium mb-2 flex items-center gap-2">
-            About Project
-            <Badge
-              variant="outline"
-              className="ml-2"
-            >
-              Description
-            </Badge>
-          </h3>
-          <p className="text-muted-foreground leading-relaxed">{description}</p>
-        </div>
-
         <div className="grid gap-6 md:grid-cols-2">
           {demo_link && (
             <Card className="border bg-card/50">
