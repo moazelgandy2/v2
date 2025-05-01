@@ -36,14 +36,6 @@ export function OurWorkSection({ projects }: { projects: ProjectsType }) {
     ),
   }));
 
-  const allCards = data.map((card, index) => (
-    <WorkCard
-      key={card.src}
-      card={card}
-      index={index}
-    />
-  ));
-
   const webCards = data
     .filter((card) => card.category.toLowerCase() === "website")
     .map((card, index) => (
@@ -95,12 +87,7 @@ export function OurWorkSection({ projects }: { projects: ProjectsType }) {
               <TabsTrigger value="android">Android</TabsTrigger>
               <TabsTrigger value="ios">IOS</TabsTrigger>
             </TabsList>
-            <TabsContent
-              className="w-full"
-              value="all"
-            >
-              <Carousel items={allCards} />
-            </TabsContent>
+
             <TabsContent
               className="w-full"
               value="web"
