@@ -36,14 +36,6 @@ export function OurWorkSection({ projects }: { projects: ProjectsType }) {
     ),
   }));
 
-  const allCards = data.map((card, index) => (
-    <WorkCard
-      key={card.src}
-      card={card}
-      index={index}
-    />
-  ));
-
   const webCards = data
     .filter((card) => card.category.toLowerCase() === "website")
     .map((card, index) => (
@@ -86,25 +78,31 @@ export function OurWorkSection({ projects }: { projects: ProjectsType }) {
         </div>
         <div className="flex w-full justify-center items-center mt-8">
           <Tabs
-            defaultValue="all"
+            defaultValue="web"
             className="w-full flex px-8 justify-center items-center flex-col"
           >
             <TabsList className="flex justify-center items-center">
-              <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="web">Website</TabsTrigger>
               <TabsTrigger value="android">Android</TabsTrigger>
               <TabsTrigger value="ios">IOS</TabsTrigger>
             </TabsList>
-            <TabsContent value="all">
-              <Carousel items={allCards} />
-            </TabsContent>
-            <TabsContent value="web">
+
+            <TabsContent
+              className="w-full"
+              value="web"
+            >
               <Carousel items={webCards} />
             </TabsContent>
-            <TabsContent value="android">
+            <TabsContent
+              className="w-full"
+              value="android"
+            >
               <Carousel items={androidCards} />
             </TabsContent>
-            <TabsContent value="ios">
+            <TabsContent
+              className="w-full"
+              value="ios"
+            >
               <Carousel items={iosCards} />
             </TabsContent>
           </Tabs>

@@ -18,7 +18,7 @@ export function TestimonialsSection({
   return (
     <section
       id="testimonials"
-      className="relative w-full py-12 overflow-hidden md:py-24 lg:py-32"
+      className="relative min-h-[75vh] sm:min-h-[90vh] md:min-h-[100vh] lg:min-h-[110vh]  w-full py-12 overflow-hidden md:py-24 lg:py-32"
     >
       <div className="container relative w-full px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">

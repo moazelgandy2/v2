@@ -10,13 +10,6 @@ interface CarouselProps {
   initialScroll?: number;
 }
 
-type Card = {
-  src: string;
-  title: string;
-  category: string;
-  content: React.ReactNode;
-};
-
 export const CarouselContext = createContext<{
   onCardClose: (index: number) => void;
   currentIndex: number;
